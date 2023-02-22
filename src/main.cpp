@@ -12,18 +12,17 @@ int main(void){
   openglAPI.initializeGL(); 
 
   Square square = loadSquare(); 
-
+  square.velocity = glm::vec2(0.01f, 0.01f);
+  
   unsigned int program = openglAPI.bindShader();
-  glUseProgram(program);
-
   SetColor(program, square.col);
 
   while(!glfwWindowShouldClose(openglAPI.window)){
-    square.transform = glm::translate(square.transform, glm::vec3(.01f, 0, 0));
     openglAPI.render(square); 
     glClearColor(0.7f, 0.7f, 0.8f, 1.0f);
     glfwSwapBuffers(openglAPI.window);
     glfwPollEvents();
+    std::cout<<getPosition(square).x << " " << getPosition(square).y<<std::endl;
   }
 
   glfwTerminate();

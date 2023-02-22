@@ -28,7 +28,7 @@ Square loadSquare(){
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,2*sizeof(float), 0);
 
-  return Square{vao, Color{0.5f, 0.5f, 0.5f, 1.0f}, glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0)), glm::vec2(0), glm::vec2(0)};
+  return Square{vao, Color{0.5f, 0.5f, 0.5f, 1.0f}, glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0)), glm::vec2(0)};
 }
 
 glm::vec2 getPosition(Square square){

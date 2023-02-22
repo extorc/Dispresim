@@ -12,7 +12,6 @@ struct Square{
   Color col;
   glm::mat4 transform;
   glm::vec2 velocity;
-  glm::vec2 acceleration;
 };
 
 Square loadSquare();

@@ -32,5 +32,5 @@ class OpenglAPI{
     static unsigned int createShader(unsigned int type, const char* src);
     void initializeGL();
     unsigned int bindShader();
-    void render(Square square);
+    void render(Square& square);
 };
