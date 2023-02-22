@@ -1,5 +1,6 @@
 #include "OpenglAPI.h"
 
+
 unsigned int OpenglAPI::createShader(unsigned int type, const char* src){
   unsigned int shader = glCreateShader(type);
   glShaderSource(shader, 1,&src, NULL);
@@ -14,7 +15,7 @@ void OpenglAPI::initializeGL(){
     std::cout<<"Failed to initialize GLFW"<<std::endl;
   }
 
-  window = glfwCreateWindow(640, 640, "Dispresim", NULL, NULL);
+  window = glfwCreateWindow(640, 360, "Dispresim", NULL, NULL);
   if(!window){
     glfwTerminate();
   }
@@ -30,8 +31,9 @@ unsigned int OpenglAPI::bindShader(){
   const char* vSource = 
     "#version 330 core\n"
     "layout (location = 0) in vec4 position;\n"
+    "uniform mat4 uProj;\n"
     "void main(){\n"
-    "gl_Position = position;\n"
+    "gl_Position = uProj * position;\n"
     "}\n";
   const char* fSource = 
     "#version 330 core\n"
