@@ -14,16 +14,14 @@ int main(void){
   Square square;  
   square.col = {1.0f, 1.0f, 0.7f, 1.0f};
 
-  unsigned int program = OpenglAPI::bindShader();
+  unsigned int program = openglAPI.bindShader();
   glUseProgram(program);
 
   SetColor(program, square.col);
-  glm::mat4 proj = glm::ortho(-16.0f, 16.0f, 9.0f, -9.0f,-1.0f, 1.0f);
-  glUniformMatrix4fv(glGetUniformLocation(program, "uProj"),1, GL_FALSE, &proj[0][0]);
 
   while(!glfwWindowShouldClose(openglAPI.window)){
-    glClear(GL_COLOR_BUFFER_BIT);
-    square.render(); 
+    square.transform = glm::translate(square.transform, glm::vec3(.01f, 0, 0));
+    openglAPI.render(square); 
     glClearColor(0.7f, 0.7f, 0.8f, 1.0f);
     glfwSwapBuffers(openglAPI.window);
     glfwPollEvents();

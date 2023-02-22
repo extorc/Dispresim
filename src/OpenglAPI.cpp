@@ -28,21 +28,7 @@ void OpenglAPI::initializeGL(){
 }
 
 unsigned int OpenglAPI::bindShader(){
-  const char* vSource = 
-    "#version 330 core\n"
-    "layout (location = 0) in vec4 position;\n"
-    "uniform mat4 uProj;\n"
-    "void main(){\n"
-    "gl_Position = uProj * position;\n"
-    "}\n";
-  const char* fSource = 
-    "#version 330 core\n"
-    "layout (location = 0) out vec4 color;\n"
-    "uniform vec4 uColor;\n"
-    "void main(){\n"
-    "color = uColor;\n"
-    "}\n";
-  unsigned int program = glCreateProgram();
+  program = glCreateProgram();
 
   unsigned int vs = OpenglAPI::createShader(GL_VERTEX_SHADER, vSource);
   unsigned int fs = OpenglAPI::createShader(GL_FRAGMENT_SHADER, fSource);
@@ -56,4 +42,12 @@ unsigned int OpenglAPI::bindShader(){
   glDeleteShader(fs);
 
   return program;
+}
+
+void OpenglAPI::render(Square square){
+  glm::mat4 result = proj * square.transform;
+  glUniformMatrix4fv(glGetUniformLocation(program, "uProj"),1, GL_FALSE, &result[0][0]);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glBindVertexArray(square.vao);
+  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 }
