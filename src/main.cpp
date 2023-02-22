@@ -4,6 +4,7 @@
 #include <malloc.h>
 #include "OpenglAPI.h"
 #include "shaders.h"
+#include "Square.h"
 
 int main(void){
   OpenglAPI openglAPI;
@@ -14,14 +15,14 @@ int main(void){
     0.5f, 0.0f,
     0.5f, 0.5f   
   };
-
-  unsigned int buffer;
-  glGenBuffers(1, &buffer);
-  glBindBuffer(GL_ARRAY_BUFFER, buffer);
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,2*sizeof(float), 0);
-  glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
-
+  float positions2[6] = {
+    0.0f, 0.0f,
+    0.5f, 0.0f,
+    0.0f, 0.5f   
+  };
+  
+  Square square(positions);  
+  Square square2(positions2);
   unsigned int program = glCreateProgram();
 
   unsigned int vs = OpenglAPI::createShader(GL_VERTEX_SHADER, vSource);
@@ -38,6 +39,9 @@ int main(void){
   glUseProgram(program);
   while(!glfwWindowShouldClose(openglAPI.window)){
     glClear(GL_COLOR_BUFFER_BIT);
+    glBindVertexArray(square.vao);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(square2.vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glClearColor(0.7f, 0.7f, 0.8f, 1.0f);
     glfwSwapBuffers(openglAPI.window);
