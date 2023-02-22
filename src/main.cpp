@@ -9,25 +9,17 @@ int main(void){
   OpenglAPI openglAPI;
   openglAPI.initializeGL(); 
 
-  float positions[] = {
-    0.0f, 0.5f,
-    0.5f, 0.0f,
-    0.5f, 0.5f,
-    0.0f, 0.0f
-  };
-  unsigned int indices[] = {
-    0, 1, 2, 0, 1, 3
-  }; 
-  
-  Square square(positions, indices);  
+  Square square;  
   
   unsigned int program = OpenglAPI::bindShader();
   glUseProgram(program);
 
+  glUniform4f(glGetUniformLocation(program, "uColor"), 1.0f, 1.0f, 0.0f, 1.0f);
+
   while(!glfwWindowShouldClose(openglAPI.window)){
     glClear(GL_COLOR_BUFFER_BIT);
-    glBindVertexArray(square.vao);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+    glUniform4f(glGetUniformLocation(program, "color"),1.0f, 1.0f, 0.0f, 1.0f);
+    square.render(); 
     glClearColor(0.7f, 0.7f, 0.8f, 1.0f);
     glfwSwapBuffers(openglAPI.window);
     glfwPollEvents();

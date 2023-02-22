@@ -1,6 +1,6 @@
 #include "Square.h"
 
-Square::Square(float* positions, unsigned int* indices){
+Square::Square(){
   glGenVertexArrays(1, &vao);
   glBindVertexArray(vao);
 
@@ -17,4 +17,8 @@ Square::Square(float* positions, unsigned int* indices){
   
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,2*sizeof(float), 0);
+}
+void Square::render(){
+  glBindVertexArray(this->vao);
+  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 }
