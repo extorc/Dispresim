@@ -11,8 +11,7 @@ int main(void){
   OpenglAPI openglAPI;
   openglAPI.initializeGL(); 
 
-  Square square;  
-  square.col = {1.0f, 1.0f, 0.7f, 1.0f};
+  Square square = loadSquare(); 
 
   unsigned int program = openglAPI.bindShader();
   glUseProgram(program);

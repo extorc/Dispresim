@@ -5,22 +5,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Color.h"
+#include "glm/gtc/matrix_access.hpp"
 
-class Square{
-  public:
+struct Square{
   unsigned int vao;
   Color col;
-  float positions[8] = {
-    0.0f, 5.0f,
-    5.0f, 0.0f,
-    5.0f, 5.0f,
-    0.0f, 0.0f
-  };
-  unsigned int indices[6] = {
-    0, 1, 2, 0, 1, 3
-  }; 
-
-  glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
-  Square();
-  void render();
+  glm::mat4 transform;
+  glm::vec2 velocity;
+  glm::vec2 acceleration;
 };
+
+Square loadSquare();
+glm::vec2 getPosition(Square square);
