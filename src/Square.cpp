@@ -34,3 +34,16 @@ Square loadSquare(){
 glm::vec2 getPosition(Square square){
   return glm::vec2(glm::row(square.transform, 0)[3],glm::row(square.transform, 1)[3]);
 }
+
+void collideWithWall(Square& square){
+  glm::vec2 position = getPosition(square);
+  if(position.x > 320){
+    square.velocity = glm::vec2(-square.velocity.x, square.velocity.y);
+  }else if(position.x < -320){
+    square.velocity = glm::vec2(-square.velocity.x, square.velocity.y);
+  }else if(position.y > 180){
+    square.velocity = glm::vec2(square.velocity.x, -square.velocity.y);
+  }else if(position.y < -180){
+    square.velocity = glm::vec2(square.velocity.x, -square.velocity.y);
+  }
+}

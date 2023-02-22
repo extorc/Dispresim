@@ -16,3 +16,4 @@ struct Square{
 
 Square loadSquare();
 glm::vec2 getPosition(Square square);
+void collideWithWall(Square& square);
