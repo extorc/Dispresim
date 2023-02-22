@@ -6,5 +6,5 @@
 class Square{
   public:
   unsigned int vao;
-  Square(float* positions);
+  Square(float* positions, unsigned int* indices);
 };
