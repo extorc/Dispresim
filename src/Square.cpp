@@ -2,7 +2,6 @@
 
 float rand_FloatRange(float a, float b){
   float r = ((b - a) * ((float)rand() / RAND_MAX)) + a;
-  std::cout<<r<<std::endl;
   return r;
 }
 
@@ -39,6 +38,10 @@ Square loadSquare(){
 
 glm::vec2 getPosition(Square square){
   return glm::vec2(glm::row(square.transform, 0)[3],glm::row(square.transform, 1)[3]);
+}
+
+float getDistance(Square square, Square square2){
+  return glm::length(getPosition(square)-getPosition(square2));
 }
 
 void collideWithWall(Square& square){
