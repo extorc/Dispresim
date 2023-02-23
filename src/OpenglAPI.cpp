@@ -46,6 +46,7 @@ unsigned int OpenglAPI::bindShader(){
 }
 
 void OpenglAPI::render(Square& square){
+  SetColor(program, square.col);
   square.transform = glm::translate(square.transform,glm::vec3(square.velocity, 0.0f));
   glm::mat4 result = proj * square.transform;
   glUniformMatrix4fv(glGetUniformLocation(program, "uProj"),1, GL_FALSE, &result[0][0]);
