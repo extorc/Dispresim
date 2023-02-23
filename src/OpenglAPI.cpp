@@ -49,7 +49,7 @@ void OpenglAPI::render(Square& square){
   square.transform = glm::translate(square.transform,glm::vec3(square.velocity, 0.0f));
   glm::mat4 result = proj * square.transform;
   glUniformMatrix4fv(glGetUniformLocation(program, "uProj"),1, GL_FALSE, &result[0][0]);
-  glClear(GL_COLOR_BUFFER_BIT);
   glBindVertexArray(square.vao);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+  glBindVertexArray(0);
 }

@@ -6,6 +6,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Color.h"
 #include "glm/gtc/matrix_access.hpp"
+#include <stdlib.h>
+
+float rand_FloatRange(float a, float b);
 
 struct Square{
   unsigned int vao;

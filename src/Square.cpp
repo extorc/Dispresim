@@ -1,5 +1,11 @@
 #include "Square.h"
 
+float rand_FloatRange(float a, float b){
+  float r = ((b - a) * ((float)rand() / RAND_MAX)) + a;
+  std::cout<<r<<std::endl;
+  return r;
+}
+
 Square loadSquare(){
   float positions[8] = {
     0.0f, 5.0f,
