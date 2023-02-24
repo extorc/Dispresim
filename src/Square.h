@@ -15,6 +15,7 @@ struct Square{
   Color col;
   glm::mat4 transform;
   glm::vec2 velocity;
+  int infectionLifetime = 0;
 };
 
 Square loadSquare();
