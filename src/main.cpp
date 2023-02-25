@@ -37,9 +37,10 @@ int main(int argc, char* argv[]){
           list.at(i).col = Color{0.5f, 0.5f, 0.5f, 1.0f};
           list.at(i).infectionLifetime = 0;
           infectionCount --;
+          list.at(i).immune = true;
         }
         for(int j = 0; j < 200; j++){                                          //Iterate collision with every non infected person
-          if(list.at(j).col.r != 1){
+          if(list.at(j).col.r != 1 && !list.at(j).immune){
             if(j != i){
               float d = getDistance(list.at(j), list.at(i));
               if(d < 5){
@@ -49,6 +50,13 @@ int main(int argc, char* argv[]){
             }
           }
         }
+      }
+      if(list.at(i).immune){
+        list.at(i).immunityLifetime++;
+      }
+      if(list.at(i).immunityLifetime > 500){
+        list.at(i).immunityLifetime = 0;
+        list.at(i).immune = false;
       }
     }
     std::cout<<infectionCount<<std::endl;

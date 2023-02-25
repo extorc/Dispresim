@@ -16,6 +16,8 @@ struct Square{
   glm::mat4 transform;
   glm::vec2 velocity;
   int infectionLifetime = 0;
+  bool immune = false;
+  int immunityLifetime = 0;
 };
 
 Square loadSquare();
